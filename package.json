@@ -1,0 +1,41 @@
+{
+  "name": "desafio-nodejs",
+  "version": "1.0.0",
+  "description": "desafio nodejs ludson pereira",
+  "main": "./build/server",
+  "scripts": {
+    "build": "/bin/sh tsc_eval.sh",
+    "start": "node .",
+    "predev": "npm run build && npm run db:reset",
+    "dev": "nodemon --watch \"./src/**\" ./src/server.ts",
+    "postinstall": "if [ ! -z 'cat ./packages.npm' ]; then npm i --ignore-scripts $(cat ./packages.npm); fi",
+    "lint": "eslint ./src --ext .ts"
+  },
+  "keywords": [],
+  "author": "Ludson Pereira",
+  "license": "ISC",
+  "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.3",
+    "@types/validator": "^13.11.9",
+    "@typescript-eslint/eslint-plugin": "^7.5.0",
+    "@typescript-eslint/parser": "^7.5.0",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-sonarjs": "^0.25.1",
+    "nodemon": "^3.1.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.3",
+    "sequelize": "^6.37.2"
+  }
+}
