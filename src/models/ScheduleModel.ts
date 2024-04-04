@@ -1,18 +1,19 @@
 import { Model, DataTypes } from 'sequelize';
 import db from '.';
 
-export default class Schedule extends Model {
+export default class ScheduleModel extends Model {
   declare id: number;
   declare email: string;
   declare scheduleDateTime: Date;
 }
 
-Schedule.init({
+ScheduleModel.init({
   id: {
     type: DataTypes.INTEGER.UNSIGNED,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
+    unique: true,
   },
 
   email: {
@@ -22,6 +23,8 @@ Schedule.init({
   scheduleDateTime: {
     type: DataTypes.DATE,
     allowNull: false,
+    unique: true,
+    defaultValue: DataTypes.NOW,
   },
 }, {
   underscored: true,
