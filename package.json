@@ -8,7 +8,8 @@
     "start": "node .",
     "predev": "npm run build && npm run db:reset",
     "dev": "nodemon --watch \"./src/**\" ./src/index.ts",
-    "lint": "eslint ./src --ext .ts"
+    "lint": "eslint ./src --ext .ts",
+    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
   },
   "keywords": [],
   "author": "Ludson Pereira",

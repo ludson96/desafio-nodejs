@@ -1,5 +1,5 @@
 import express from 'express';
-import database from '.';
+// import database from '.';
 // import { productsRouter, salesRotuer } from './routers';
 
 const index = express();
@@ -9,4 +9,4 @@ index.use(express.json());
 
 // index.use('/sales', salesRotuer);
 
-export default index
+export default index;

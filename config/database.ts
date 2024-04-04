@@ -1,17 +1,38 @@
-import mysql, { ConnectionOptions } from 'mysql2/promise';
-import index from '../src/index';
 import 'dotenv/config';
 
-const connection: ConnectionOptions = {
-  host: process.env.MYSQL_HOST || 'localhost',
-  port: (process.env.MYSQL_PORT ?? 3306) as number,
-  user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || 'root',
-  database: process.env.DATABASE || 'db',
+type Environment = 'production' | 'development' | 'test';
+
+const environment = process.env.NODE_ENV || 'test';
+
+const suffix = {
+  production: '-prod',
+  development: '-dev',
+  test: '-test',
 };
 
-index.listen(process.env.PORT, () => {
-  console.log(`Escutando na porta ${process.env.PORT}`);
-});
+const databaseSuffix = suffix[environment as Environment] || suffix.test;
 
-export default mysql.createConnection(connection);
+const options = {
+  host: process.env.MYSQL_HOST || 'localhost',
+  port: process.env.MYSQL_PORT || '3306',
+  username: process.env.MYSQL_USER || 'root',
+  password: process.env.MYSQL_PASSWORD || 'password',
+  database: `${process.env.MYSQL_DB_NAME || 'testedb'}${databaseSuffix}`,
+  dialect: 'mysql',
+  dialectOptions: {
+    timezone: 'Z',
+  },
+  logging: false,
+};
+
+export default {
+  development: {
+    ...options,
+  },
+  test: {
+    ...options,
+  },
+  production: {
+    ...options,
+  },
+};
