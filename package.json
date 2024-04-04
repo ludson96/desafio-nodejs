@@ -2,7 +2,7 @@
   "name": "desafio-nodejs",
   "version": "1.0.0",
   "description": "desafio nodejs ludson pereira",
-  "main": "./build/server",
+  "main": "./src/server.ts",
   "scripts": {
     "build": "/bin/sh tsc_eval.sh",
     "start": "node .",

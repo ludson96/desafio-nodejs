@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "target": "es2019",
-    "module": "es2020",
-    "sourceMap": true,                     
+    "module": "commonjs",
+    "sourceMap": true,
     "outDir": "./build",
     "rootDir": ".",
     "moduleResolution": "node",
-    "baseUrl": ".", 
+    "baseUrl": ".",
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -15,8 +15,13 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "paths": {
-      "*": ["node_modules/*"]
+      "*": [
+        "node_modules/*"
+      ]
     }
   },
-  "include": ["src/**/*", "config/*"],
+  "include": [
+    "src/**/*",
+    "config/*"
+  ],
 }

@@ -1,6 +1,6 @@
 import { QueryInterface } from "sequelize";
 
-export default {
+module.exports = {
   up: async (queryInterface: QueryInterface) => {
     await queryInterface.bulkInsert('schedules', [
       {

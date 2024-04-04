@@ -27,8 +27,8 @@ ScheduleModel.init({
     defaultValue: DataTypes.NOW,
   },
 }, {
-  underscored: true,
+  underscored: false,
   sequelize: db,
   modelName: 'schedules',
-  timestamps: true,
+  timestamps: false,
 });

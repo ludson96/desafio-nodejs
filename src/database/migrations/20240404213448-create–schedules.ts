@@ -1,6 +1,6 @@
 import { DataTypes, QueryInterface } from "sequelize";
 
-export default {
+module.exports = {
   up: async (queryInterface: QueryInterface , Sequelize: typeof DataTypes) => {
     await queryInterface.createTable('schedules', {
       id: {
