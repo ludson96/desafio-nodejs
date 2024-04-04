@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import ScheduleService from '../services/ScheduleService';
+import ISchedule from '../interfaces/ISchedule';
 
 export default class ScheduleController {
   constructor(private _scheduleService = new ScheduleService()) {
@@ -16,7 +17,7 @@ export default class ScheduleController {
 
   public createSchedule = async (req: Request, res: Response): Promise<object> => {
     try {
-      const { email } = req.body;
+      const { email }: ISchedule = req.body;
       const schedule = await this._scheduleService.createSchedule(email);
       return res.status(201).json(schedule);
     } catch (error) {
