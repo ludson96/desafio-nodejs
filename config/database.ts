@@ -1,10 +1,10 @@
-import index from '../src/index';
 import mysql, { ConnectionOptions } from 'mysql2/promise';
-import 'dotenv/config'
+import index from '../src/index';
+import 'dotenv/config';
 
 const connection: ConnectionOptions = {
   host: process.env.MYSQL_HOST || 'localhost',
-  port: (process.env.MYSQL_PORT ?? 3306) as number, 
+  port: (process.env.MYSQL_PORT ?? 3306) as number,
   user: process.env.MYSQL_USER || 'root',
   password: process.env.MYSQL_PASSWORD || 'root',
   database: process.env.DATABASE || 'db',
