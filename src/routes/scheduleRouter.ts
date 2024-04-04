@@ -7,4 +7,8 @@ const scheduleController = new ScheduleController();
 
 router.get('/', scheduleController.getAllSchedule);
 
+router.post('/', scheduleController.createSchedule);
+
+router.delete('/:id', scheduleController.deleteSchedule);
+
 export default router;
