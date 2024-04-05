@@ -3,24 +3,23 @@ import ScheduleService from '../services/ScheduleService';
 import { IScheduleInput, ISchedule } from '../interfaces/ISchedule';
 
 export default class ScheduleController {
-  // Adicionando ScheduleService como propriedade privada, usado desta forma como injeção de dependência
-  constructor(private scheduleService: ScheduleService) {
+  constructor(private _scheduleService = new ScheduleService()) {
   }
 
   public getAllSchedule = async (_req: Request, res: Response): Promise<Response<ISchedule>> => {
-    const schedule = await this.scheduleService.getAllSchedule();
+    const schedule = await this._scheduleService.getAllSchedule();
     return res.status(200).json(schedule);
   };
 
   public createSchedule = async (req: Request, res: Response): Promise<Response<ISchedule>> => {
     const { email }: IScheduleInput = req.body;
-    const { status, message } = await this.scheduleService.createSchedule(email);
+    const { status, message } = await this._scheduleService.createSchedule(email);
     return res.status(status).json(message);
   };
 
   public deleteSchedule = async (req: Request, res: Response): Promise<Response<ISchedule>> => {
     const { id } = req.params;
-    const { status, message } = await this.scheduleService.deleteSchedule(Number(id));
+    const { status, message } = await this._scheduleService.deleteSchedule(Number(id));
     return res.status(status).json(message);
   };
 }

@@ -1,15 +1,11 @@
 import { Router } from 'express';
 import ScheduleController from '../controllers/ScheduleController';
-import ScheduleService from '../services/ScheduleService';
 import ValidateInputEmail from '../middlewares/ValidateInputEmail';
 import ValidateId from '../middlewares/ValidateId';
-import ScheduleModel from '../models/ScheduleModel';
 
 const router = Router();
 
-const scheduleService = new ScheduleService(ScheduleModel);
-// Passando a instância de ScheduleService para ScheduleController
-const scheduleController = new ScheduleController(scheduleService);
+const scheduleController = new ScheduleController();
 
 router.route('/')
   .get(scheduleController.getAllSchedule)
