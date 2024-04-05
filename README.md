@@ -105,11 +105,11 @@ Funciona da seguinte forma:
           }
         }
         ```
-    - caso não seja informado nenhum `email`, a rota retorna o status HTTP 404 com a
+    - caso não seja informado nenhum `email`, a rota retorna o status HTTP 400 com a
      mensagem `Email is required` no corpo da resposta.
-    - caso seja informado apenas espaços vazios, a rota retorna o status HTTP 404 com a
+    - caso seja informado apenas espaços vazios, a rota retorna o status HTTP 400 com a
      mensagem `Email cannot be an empty string` no corpo da resposta.
-    - caso seja informado um `email` invalido, a rota retorna o status HTTP 404 com a
+    - caso seja informado um `email` invalido, a rota retorna o status HTTP 400 com a
      mensagem `Invalid email format` no corpo da resposta.
 
 </details>
@@ -166,6 +166,8 @@ Funciona da seguinte forma:
         ```
    - caso não exista um agendamento com esse `id`, a rota retorna o status HTTP 404 com a
      mensagem `Schedule not found with ID: 3` no corpo da resposta.
+    - caso seja informado um `id` que não é um número, a rota retorna o status HTTP 400 com a
+     mensagem `ID must be a number` no corpo da resposta.
 
 </details>
 
