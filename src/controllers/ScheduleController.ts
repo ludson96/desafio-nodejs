@@ -3,7 +3,8 @@ import ScheduleService from '../services/ScheduleService';
 import { IScheduleInput, ISchedule } from '../interfaces/ISchedule';
 
 export default class ScheduleController {
-  constructor(private scheduleService = new ScheduleService()) {
+  // Adicionando ScheduleService como propriedade privada, usado desta forma como injeção de dependência
+  constructor(private scheduleService: ScheduleService) {
   }
 
   public getAllSchedule = async (_req: Request, res: Response): Promise<Response<ISchedule>> => {

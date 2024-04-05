@@ -14,6 +14,7 @@ export default class ValidateId {
       throw new HttpError(StatusCodes.BAD_REQUEST, 'ID cannot be an empty string');
     }
 
+    // Verifica se o id é um número, caso não seja retorna um erro personalizado
     if (Number.isNaN(Number(id))) {
       throw new HttpError(StatusCodes.BAD_REQUEST, 'ID must be a number');
     }

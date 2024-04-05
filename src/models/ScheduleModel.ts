@@ -15,7 +15,6 @@ ScheduleModel.init({
     primaryKey: true,
     unique: true,
   },
-
   email: {
     type: DataTypes.STRING,
     allowNull: false,

@@ -3,7 +3,7 @@ import HttpError from '../utils/HttpError';
 import ScheduleModel from '../models/ScheduleModel';
 
 export default class ScheduleService {
-  constructor(public scheduleModel = ScheduleModel) {}
+  constructor(private scheduleModel: typeof ScheduleModel) {}
 
   public async getAllSchedule() {
     try {

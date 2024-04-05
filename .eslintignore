@@ -1,5 +1,6 @@
 node_modules/
 tests/
 build/
+config/
 src/database/migrations
 src/database/seeders
