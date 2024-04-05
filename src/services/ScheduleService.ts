@@ -31,7 +31,7 @@ export default class ScheduleService {
       }
 
       await this._scheduleModel.destroy({ where: { id } });
-      const message = { message: 'Schedule deleted successfully' };
+      const message = { message: 'Scheduling canceled successfully' };
       return { status: StatusCodes.OK, message }; // escolhi o status 200 para enviar um mensagem ao inves do 204
     } catch (error) {
       throw new HttpError(StatusCodes.INTERNAL_SERVER_ERROR, (error as Error).message);
