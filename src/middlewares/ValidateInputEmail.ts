@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import HttpError from '../utils/HttpError';
-import ISchedule from '../interfaces/ISchedule';
+import { IScheduleInput } from '../interfaces/ISchedule';
 import validateEmail from '../utils/validateEmail';
 
 export default class ValidateInputEmail {
   public static emailFields = (req: Request, _res: Response, next: NextFunction) => {
-    const { email }: ISchedule = req.body;
+    const { email }: IScheduleInput = req.body;
 
     if (!email) {
       throw new HttpError(StatusCodes.BAD_REQUEST, 'Email is required');
