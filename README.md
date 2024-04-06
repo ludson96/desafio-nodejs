@@ -2,11 +2,14 @@
 
 Repositório possuí projeto desenvolvido para o `Desafio de desenvolvimento de API de Agendamento`, para a empresa `WeDoRemotely`.
 
+## Funcionamento com Swagger UI
+![Swagger][Swagger-GIF]
+
 ## Informações de escolha de desenvolvimento
 
 - Como a lógica do desafio passava que só seria agendado passando apenas o e-mail, não ficou muito claro como viria a data do agendamento, já que em uma aplicação real a pessoa usuária iria escolher a data e hora. Então coloquei para ser criado a data na hora que inserir o e-mail, mas caso a pessoa usuária tivesse passado uma data eu verificaria no banco se está disponível para depois salvar o agendamento;
 - Uma coisa que não foi pedida, mas que fiquei na dúvida de fazer, isso o cliente responderia, seria uma `auditoria`, e ao invés de deletar um agendamento, apenas desativaríamos ele, para mantar o histórico;
-- Tem uma camada a mais do que foi usado como projeto, a camada `Service`. Ela é a camada de lógica de negócio da aplicação, sendo a `Model` camada de representação de dados e lógica de negócio relacionada e a `Controller` camada de coordenação das solicitações do cliente e chamadas aos serviços correspondentes.;
+- Tem uma camada a mais do que foi usado como exemplo, a camada `Service`. Ela é a camada de lógica de negócio da aplicação, sendo a `Model` camada de representação de dados e lógica de negócio relacionada e a `Controller` camada de coordenação das solicitações do cliente e chamadas aos serviços correspondentes.;
 - A escolha de usar `try/catch` na camada Service é porque meus `middlewares` já estão validando todos os inputs, sendo a camada de Controller apenas a camada de request e response, sem nenhuma regra de negócio.
 
 ## Linguagens e ferramentas usadas
@@ -26,7 +29,7 @@ Repositório possuí projeto desenvolvido para o `Desafio de desenvolvimento de 
 
 ## O que foi desenvolvido
    
-O objetivo deste desafio é desenvolver uma API RESTful em Node.js utilizando TypeScript para um sistema de agendamento de salões de beleza. A API permite que os clientes do salão agendem serviços de beleza fornecendo apenas um e-mail de contato.
+Uma API RESTful em Node.js utilizando TypeScript para um sistema de agendamento de salões de beleza. A API permite que os clientes do salão agendem serviços de beleza fornecendo apenas um e-mail de contato.
 
 ## Instruções para instalar e rodar
 
@@ -45,7 +48,7 @@ O objetivo deste desafio é desenvolver uma API RESTful em Node.js utilizando Ty
     npm install
     ```
 
-1. Na raiz do projeto há um arquivo `.env.example`, que deve ser preenchido com as variáveis de ambiente para o funcionamento da API com o Banco de dados e a sua porta. Todas as instruções de preenchimento estão nesse arquivo.
+1. Na raiz do projeto há um arquivo `.env.example`, que deve ser preenchido com as variáveis de ambiente e renomeado para `.env` para o funcionamento da API com o Banco de dados e a sua porta. Todas as instruções de preenchimento estão nesse arquivo.
 
 1. Caso não tenha `MySQL` instalados, basta executar o `docker-compose.yml` (necessário docker instalado) com o comando abaixo:
 
@@ -62,6 +65,8 @@ O objetivo deste desafio é desenvolver uma API RESTful em Node.js utilizando Ty
    ```
 
 1. Caso queira testar com um Rest API Client tem um arquivo `Insomnia.json`, exportado a partir do insomnia, que possui uma coleção com todas as requisições possíveis
+
+1. Caso queira ver como funciona sem um Rest API Client, basta acessar `http://{HOST}:{API_PORT}/api-docs` sendo `HOST` e `API_PORT` os valores definido em `.env`.
 
 </details>
 
@@ -198,3 +203,4 @@ Funciona da seguinte forma:
 [ts-node-url]: https://www.npmjs.com/package/ts-node-dev
 [.ENV-logo]: https://img.shields.io/badge/.ENV-ECD53F?logo=dotenv&logoColor=000&style=for-the-badge
 [.ENV-url]: https://www.npmjs.com/package/dotenv
+[Swagger-GIF]: public/images/swagger.gif
