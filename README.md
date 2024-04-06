@@ -30,7 +30,7 @@ O objetivo deste desafio é desenvolver uma API RESTful em Node.js utilizando Ty
 
 ## Instruções para instalar e rodar
 
-<!-- <details> -->
+<details>
 
 1. Clone o repositório (recomendado usar em SSH) e entre na pasta:
 
@@ -65,9 +65,9 @@ O objetivo deste desafio é desenvolver uma API RESTful em Node.js utilizando Ty
 
 </details>
 
-## Detalhamento de execução
+## Uso
 
-<!-- <details> -->
+<details>
 
   <summary><strong>Schedule</strong></summary>
 
