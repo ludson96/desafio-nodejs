@@ -28,7 +28,19 @@
             }
           },
           "500": {
-            "description": "Erro interno do servidor"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -65,7 +77,7 @@
             }
           },
           "400": {
-            "description": "Requisição inválida",
+            "description": "Invalid input",
             "content": {
               "application/json": {
                 "schema": {
@@ -76,14 +88,40 @@
                     }
                   }
                 },
-                "example": {
-                  "message": "Email is required"
+                "examples": {
+                  "missingEmail": {
+                    "value": {
+                      "message": "Email is required"
+                    }
+                  },
+                  "emptyEmail": {
+                    "value": {
+                      "message": "Email cannot be an empty string"
+                    }
+                  },
+                  "invalidEmail": {
+                    "value": {
+                      "message": "Invalid email format"
+                    }
+                  }
                 }
               }
             }
           },
           "500": {
-            "description": "Erro interno do servidor"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -93,7 +131,7 @@
         "tags": [
           "Schedule"
         ],
-        "description": "Exclui um agendamento.",
+        "description": "Exclui um agendamento pelo ID.",
         "parameters": [
           {
             "name": "id",
@@ -106,13 +144,64 @@
         ],
         "responses": {
           "200": {
-            "description": "Agendamento excluído com sucesso"
+            "description": "Scheduling canceled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "400": {
-            "description": "ID deve ser um número"
+            "description": "ID must be a number",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Schedule not found with ID: {id}",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Erro interno do servidor"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
