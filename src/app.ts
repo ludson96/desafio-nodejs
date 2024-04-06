@@ -1,5 +1,7 @@
-import 'express-async-errors';
+import swaggerUi from 'swagger-ui-express';
 import express from 'express';
+import swaggerDocument from '../swagger.json';
+import 'express-async-errors';
 import scheduleRouter from './routes/scheduleRouter';
 
 class App {
@@ -11,6 +13,8 @@ class App {
     this.app.use(express.json());
 
     this.app.use('/schedule', scheduleRouter);
+
+    this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   }
 
   public start(PORT: string | number):void {

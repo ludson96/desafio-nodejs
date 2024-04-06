@@ -1,23 +1,22 @@
 import { Request, Response, NextFunction } from 'express';
-import { StatusCodes } from 'http-status-codes';
-import HttpError from '../utils/HttpError';
+import errorMiddlewareBadRequest from '../utils/errorMiddlewareBadRequest';
 import { IScheduleInput } from '../interfaces/ISchedule';
 import validateEmail from '../utils/validateEmail';
 
 export default class ValidateInputEmail {
-  public static emailFields = (req: Request, _res: Response, next: NextFunction) => {
+  public static emailFields = (req: Request, res: Response, next: NextFunction) => {
     const { email }: IScheduleInput = req.body;
 
     if (!email) {
-      throw new HttpError(StatusCodes.BAD_REQUEST, 'Email is required');
+      return errorMiddlewareBadRequest('Email is required', req, res, next);
     }
 
     if (!email.trim()) {
-      throw new HttpError(StatusCodes.BAD_REQUEST, 'Email cannot be an empty string');
+      return errorMiddlewareBadRequest('Email cannot be an empty string', req, res, next);
     }
 
     if (!validateEmail(email)) {
-      throw new HttpError(StatusCodes.BAD_REQUEST, 'Invalid email format');
+      return errorMiddlewareBadRequest('Invalid email format', req, res, next);
     }
 
     next();

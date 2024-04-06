@@ -1,0 +1,155 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API de Agendamento",
+    "description": "Uma API RESTful em Node.js utilizando TypeScript para um sistema de agendamento de salões de beleza. A API permiti que os clientes do salão agendem serviços de beleza fornecendo apenas um e-mail de contato.",
+    "version": "1.0.0"
+  },
+  "basePath": "/schedule",
+  "paths": {
+    "/schedule": {
+      "get": {
+        "tags": [
+          "Schedule"
+        ],
+        "description": "Lista todos os agendamentos.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Schedule"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Schedule"
+        ],
+        "description": "Agenda um serviço de beleza, fornecendo apenas o e-mail de contato.",
+        "requestBody": {
+          "description": "E-mail do cliente para criar um novo agendamento.",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Service scheduled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/newSchedule"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Email is required"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      }
+    },
+    "/schedule/{id}": {
+      "delete": {
+        "tags": [
+          "Schedule"
+        ],
+        "description": "Exclui um agendamento.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agendamento excluído com sucesso"
+          },
+          "400": {
+            "description": "ID deve ser um número"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Schedule": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID do agendamento"
+          },
+          "email": {
+            "type": "string",
+            "description": "E-mail do cliente"
+          },
+          "scheduleDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Data e hora do agendamento"
+          }
+        }
+      },
+      "newSchedule": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Mensagem de sucesso"
+          },
+          "newSchedule": {
+            "$ref": "#/components/schemas/Schedule"
+          }
+        }
+      }
+    }
+  }
+}
