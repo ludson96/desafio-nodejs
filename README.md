@@ -68,6 +68,11 @@ Uma API RESTful em Node.js utilizando TypeScript para um sistema de agendamento 
 
 1. Caso queira ver como funciona sem um Rest API Client, basta acessar `http://{HOST}:{API_PORT}/api-docs` sendo `HOST` e `API_PORT` os valores definido em `.env`.
 
+1. Para executar os testes, basta executar o comando abaixo na raiz do projeto:
+   ```bash
+   npm run test
+   ```
+
 </details>
 
 ## Uso
