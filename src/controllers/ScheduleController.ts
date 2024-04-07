@@ -7,8 +7,8 @@ export default class ScheduleController {
   }
 
   public getAllSchedule = async (_req: Request, res: Response): Promise<Response<ISchedule>> => {
-    const schedule = await this._scheduleService.getAllSchedule();
-    return res.status(200).json(schedule);
+    const allSchedules = await this._scheduleService.getAllSchedule();
+    return res.status(200).json(allSchedules);
   };
 
   public createSchedule = async (req: Request, res: Response): Promise<Response<ISchedule>> => {

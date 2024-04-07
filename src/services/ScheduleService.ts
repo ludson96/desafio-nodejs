@@ -15,9 +15,9 @@ export default class ScheduleService {
 
   public async createSchedule(email: string) {
     try {
-      const newSchedule = await this._scheduleModel.create({ email });
-      const message = { message: 'Service scheduled successfully' };
-      return { status: StatusCodes.CREATED, message: { message, newSchedule } };
+      const scheduleCreated = await this._scheduleModel.create({ email });
+      const message = 'Service scheduled successfully';
+      return { status: StatusCodes.CREATED, message: { message, scheduleCreated } };
     } catch (error) {
       throw new HttpError(StatusCodes.INTERNAL_SERVER_ERROR, (error as Error).message);
     }
