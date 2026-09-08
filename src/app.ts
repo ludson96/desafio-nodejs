@@ -1,5 +1,5 @@
 import swaggerUi from 'swagger-ui-express';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import swaggerDocument from '../swagger.json';
 import 'express-async-errors';
 import scheduleRouter from './routes/scheduleRouter';
@@ -11,6 +11,8 @@ class App {
     this.app = express();
 
     this.app.use(express.json());
+
+    this.app.get('/', (_req: Request, res: Response) => res.redirect('/api-docs'));
 
     this.app.use('/schedule', scheduleRouter);
 

@@ -2,17 +2,19 @@
   "name": "desafio-nodejs",
   "version": "1.0.0",
   "description": "desafio nodejs ludson pereira",
-  "main": "./src/server.ts",
+  "main": "./build/src/server.js",
   "scripts": {
-    "build": "/bin/sh tsc_eval.sh",
+    "build": "tsc",
     "test": "mocha -r ts-node/register ./src/tests/*Test.ts -t 10000 --exit",
     "test:coverage": "nyc npm run test",
-    "start": "node .",
+    "start": "node ./build/src/server.js",
     "predev": "npm run build && npm run db:reset",
     "dev": "nodemon --watch \"./src/**\" ./src/server.ts",
     "lint": "eslint ./src --ext .ts",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:seed": "npx sequelize-cli db:seed:all",
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
-    "prestart": "npm run build && npm run db:reset"
+    "prod:deploy": "npm run build && npm run db:migrate"
   },
   "keywords": [],
   "author": "Ludson Pereira",
@@ -53,7 +55,6 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "jest": "^29.7.0",
     "mysql2": "^3.9.3",
     "sequelize": "^6.37.2"
   }

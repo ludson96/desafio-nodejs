@@ -8,7 +8,7 @@ Repositório possuí projeto desenvolvido para o `Desafio de desenvolvimento de 
 ## Informações de escolha de desenvolvimento
 
 - Como a lógica do desafio passava que só seria agendado passando apenas o e-mail, não ficou muito claro como viria a data do agendamento, já que em uma aplicação real a pessoa usuária iria escolher a data e hora. Então coloquei para ser criado a data na hora que inserir o e-mail, mas caso a pessoa usuária tivesse passado uma data eu verificaria no banco se está disponível para depois salvar o agendamento;
-- Uma coisa que não foi pedida, mas que fiquei na dúvida de fazer, isso o cliente responderia, seria uma `auditoria`, e ao invés de deletar um agendamento, apenas desativaríamos ele, para mantar o histórico;
+- Uma coisa que não foi pedida, mas que fiquei na dúvida de fazer, isso o cliente responderia, seria uma `auditoria`, e ao invés de deletar um agendamento, apenas desativaríamos ele, para manter o histórico;
 - Tem uma camada a mais do que foi usado como exemplo, a camada `Service`. Ela é a camada de lógica de negócio da aplicação, sendo a `Model` camada de representação de dados e lógica de negócio relacionada e a `Controller` camada de coordenação das solicitações do cliente e chamadas aos serviços correspondentes.;
 - A escolha de usar `try/catch` na camada Service é porque meus `middlewares` já estão validando todos os inputs, sendo a camada de Controller apenas a camada de request e response, sem nenhuma regra de negócio.
 
@@ -25,7 +25,8 @@ Repositório possuí projeto desenvolvido para o `Desafio de desenvolvimento de 
 [![Nodemon][Nodemon-logo]][Nodemon-url]
 [![Sequelize][Sequelize-logo]][Sequelize-url]
 [![MySQL][MySQL-logo]][MySQL-url]
-[![Jest][Jest-logo]][Jest-url]
+[![Mocha][Mocha-logo]][Mocha-url]
+[![Chai][Chai-logo]][Chai-url]
 
 ## O que foi desenvolvido
    
@@ -73,6 +74,28 @@ Uma API RESTful em Node.js utilizando TypeScript para um sistema de agendamento 
    npm run test
    ```
 
+</details>
+
+## 🌐 Deploy no Render.com (Swagger Online)
+
+<details>
+  <summary><strong>Como publicar no Render</strong></summary><br />
+
+O repositório já inclui o arquivo `render.yaml` pronto para deploy do serviço Web no Render.
+
+1. Conecte seu repositório no [Render.com](https://render.com/).
+2. Crie um **Web Service** selecionando este repositório:
+   - **Environment / Runtime**: `Node`
+   - **Build Command**: `npm install && npm run build`
+   - **Start Command**: `npm start`
+3. Configure as variáveis de ambiente necessárias para o MySQL (caso use um banco MySQL em nuvem, como TiDB Cloud, Aiven, Clever Cloud ou Railway):
+   - `MYSQL_HOST`
+   - `MYSQL_PORT` (ex: `3306`)
+   - `MYSQL_USER`
+   - `MYSQL_PASSWORD`
+   - `MYSQL_DB_NAME`
+   - `NODE_ENV`: `production`
+4. Após o deploy, a rota principal `/` redireciona automaticamente para o Swagger em `/api-docs`.
 </details>
 
 ## Uso
@@ -192,8 +215,10 @@ Funciona da seguinte forma:
 [TypeScript-url]: https://www.typescriptlang.org/
 [Docker-logo]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
 [Docker-url]: https://www.docker.com
-[Jest-logo]: https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white
-[Jest-url]: https://jestjs.io
+[Mocha-logo]: https://img.shields.io/badge/Mocha-8D6748?style=for-the-badge&logo=Mocha&logoColor=white
+[Mocha-url]: https://mochajs.org/
+[Chai-logo]: https://img.shields.io/badge/Chai-A30701?style=for-the-badge&logo=chai&logoColor=white
+[Chai-url]: https://www.chaijs.com/
 [MySQL-logo]: https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white
 [MySQL-url]: https://www.mysql.com
 [Sequelize-logo]: https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white
