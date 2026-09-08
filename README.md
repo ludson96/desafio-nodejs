@@ -1,232 +1,242 @@
-# Repositório do desafio técnico `Desenvolvimento de API de Agendamento` 📅
+# API de Agendamento - Desafio Técnico Node.js 📅
 
-Repositório possuí projeto desenvolvido para o `Desafio de desenvolvimento de API de Agendamento`, para a empresa `WeDoRemotely`.
+[![NodeJS](https://img.shields.io/badge/Node.js-20.x-339933.svg?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.4.3-3178C6.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Express](https://img.shields.io/badge/Express-4.19.2-000000.svg?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![Sequelize](https://img.shields.io/badge/Sequelize-6.37.2-52B0E7.svg?style=for-the-badge&logo=sequelize&logoColor=white)](https://sequelize.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.3-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Swagger](https://img.shields.io/badge/Swagger-OpenAPI_3.1-85EA2D.svg?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/)
+[![Mocha & Chai](https://img.shields.io/badge/Tests-Mocha_%26_Chai-8D6748.svg?style=for-the-badge&logo=mocha&logoColor=white)](https://mochajs.org/)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
 
-## Funcionamento com Swagger UI
-![Swagger][Swagger-GIF]
+> 🇧🇷 **Português** | 🇺🇸 [**English Version**](README.en.md)
 
-## Informações de escolha de desenvolvimento
+API RESTful robusta desenvolvida em Node.js com TypeScript e arquitetura em camadas (MSC) para gerenciamento de agendamentos em salões de beleza, com documentação interativa via Swagger UI e suporte a múltiplos ambientes de banco de dados.
 
-- Como a lógica do desafio passava que só seria agendado passando apenas o e-mail, não ficou muito claro como viria a data do agendamento, já que em uma aplicação real a pessoa usuária iria escolher a data e hora. Então coloquei para ser criado a data na hora que inserir o e-mail, mas caso a pessoa usuária tivesse passado uma data eu verificaria no banco se está disponível para depois salvar o agendamento;
-- Uma coisa que não foi pedida, mas que fiquei na dúvida de fazer, isso o cliente responderia, seria uma `auditoria`, e ao invés de deletar um agendamento, apenas desativaríamos ele, para manter o histórico;
-- Tem uma camada a mais do que foi usado como exemplo, a camada `Service`. Ela é a camada de lógica de negócio da aplicação, sendo a `Model` camada de representação de dados e lógica de negócio relacionada e a `Controller` camada de coordenação das solicitações do cliente e chamadas aos serviços correspondentes.;
-- A escolha de usar `try/catch` na camada Service é porque meus `middlewares` já estão validando todos os inputs, sendo a camada de Controller apenas a camada de request e response, sem nenhuma regra de negócio.
+## 📌 Navegação Rápida
 
-## Linguagens e ferramentas usadas
+- [📝 Sobre o Projeto](#-sobre-o-projeto)
+- [🖼️ Preview](#️-preview)
+- [🌐 Deploy da Aplicação / Demonstração Online do Swagger](#-deploy-da-aplicação--demonstração-online-do-swagger)
+- [⚡ API Endpoints](#-api-endpoints)
+- [✨ Funcionalidades](#-funcionalidades)
+- [🛠️ Tecnologias e Ferramentas Utilizadas](#️-tecnologias-e-ferramentas-utilizadas)
+- [🏛️ Arquitetura da Solução](#️-arquitetura-da-solução)
+- [📁 Estrutura do Repositório](#-estrutura-do-repositório)
+- [💡 Decisões Técnicas](#-decisões-técnicas)
+- [🚀 Como Executar o Projeto](#-como-executar-o-projeto)
+- [📄 Licença](#-licença)
 
-[![Git][Git-logo]][Git-url]
-[![ESLint][ESLint-logo]][ESLint-url]
-[![Docker][Docker-logo]][Docker-url]
-[![.ENV][.ENV-logo]][.ENV-url]
-[![TypeScript][TypeScript-logo]][TypeScript-url]
-[![ts-node][ts-node-logo]][ts-node-url]
-[![NodeJS][NodeJS-logo]][NodeJS-url]
-[![Express][Express-logo]][Express-url]
-[![Nodemon][Nodemon-logo]][Nodemon-url]
-[![Sequelize][Sequelize-logo]][Sequelize-url]
-[![MySQL][MySQL-logo]][MySQL-url]
-[![Mocha][Mocha-logo]][Mocha-url]
-[![Chai][Chai-logo]][Chai-url]
+## 📝 Sobre o Projeto
 
-## O que foi desenvolvido
-   
-Uma API RESTful em Node.js utilizando TypeScript para um sistema de agendamento de salões de beleza. A API permite que os clientes do salão agendem serviços de beleza fornecendo apenas um e-mail de contato.
+Este projeto foi construído para solucionar o desafio técnico de backend proposto para a empresa **WeDoRemotely**. 
 
-## Instruções para instalar e rodar
+O objetivo central foi projetar e implementar uma API RESTful performática e extensível para agendamento de serviços de beleza. A aplicação segue padrões sólidos de engenharia de software — validações desacopladas em middlewares, isolamento de regras na camada de serviço, suporte a banco de dados relacional via ORM (Sequelize) e cobertura de testes automatizados com mocks.
 
-<details>
+## 🖼️ Preview
 
-1. Clone o repositório (recomendado usar em SSH) e entre na pasta:
+<div align="center">
+  <img src="./public/images/projeto.gif" alt="Demonstração do Swagger UI" width="100%" />
+</div>
 
-    ```bash
-    git clone git@github.com:ludson96/desafio-nodejs.git
-    cd desafio-nodejs
-    ```
+## 🌐 Demonstração Online do Swagger
 
-1. Instale as dependências:
+Acesse a aplicação em produção hospedada no Render com o Swagger UI interativo pronto para teste:
 
-    ```bash
-    npm install
-    ```
+👉 **[Desafio nodejs - Swagger Docs](https://desafio-nodejs-api.onrender.com/api-docs/)**
 
-1. Na raiz do projeto há um arquivo `.env.example`, que deve ser preenchido com as variáveis de ambiente e renomeado para `.env` para o funcionamento da API com o Banco de dados e a sua porta. Todas as instruções de preenchimento estão nesse arquivo.
+> ℹ️ *A rota principal `/` redireciona automaticamente para a interface interativa do Swagger (`/api-docs`). No ambiente de demonstração online, a API utiliza um banco de dados autossuficiente (SQLite em memória/arquivo) garantindo disponibilidade contínua sem depender de serviços externos.*
 
-1. Caso não tenha `MySQL` instalados, basta executar o `docker-compose.yml` (necessário docker instalado) com o comando abaixo:
+## ⚡ API Endpoints
 
-   ```bash
-   # Execute o comando na raiz do projeto. 
-   # Flag -d irá executá-lo em segundo plano.
-   docker compose up -d
-   ```
-1. Para iniciar o servidor após configurar o `MySQL` e definir as `variáveis`, utilize o `nodemon`. Este comando também irá realizar o build, remover quaisquer bancos de dados existentes, executar as migrações e inserir os dados iniciais. Para isso, execute o seguinte comando:
+A URL base da aplicação é `http://localhost:3001` (ou a URL de produção no Render).
 
-   ```bash
-   npm run dev
-   # Após a execução, pode testar as requisições a API.
-   ```
+| Método | Endpoint | Descrição | Status de Retorno |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/` | Redirecionamento automático para a documentação Swagger | `302 Found` |
+| `GET` | `/api-docs` | Interface gráfica interativa da documentação OpenAPI/Swagger | `200 OK` |
+| `GET` | `/schedule` | Lista todos os agendamentos cadastrados | `200 OK`, `500 Internal Server Error` |
+| `POST` | `/schedule` | Cria um novo agendamento fornecendo um e-mail | `201 Created`, `400 Bad Request`, `500 Internal Server Error` |
+| `DELETE` | `/schedule/:id` | Remove/cancela um agendamento existente pelo ID | `200 OK`, `400 Bad Request`, `404 Not Found` |
 
-1. Caso queira testar com um Rest API Client tem um arquivo `Insomnia.json`, exportado a partir do insomnia, que possui uma coleção com todas as requisições possíveis
+### Exemplos de Requisição e Resposta
 
-1. Caso queira ver como funciona sem um Rest API Client, basta acessar `http://{HOST}:{API_PORT}/api-docs` sendo `HOST` e `API_PORT` os valores definido em `.env`.
+#### Criar Agendamento (`POST /schedule`)
+- **Body da Requisição:**
+  ```json
+  {
+    "email": "cliente@exemplo.com"
+  }
+  ```
+- **Resposta de Sucesso (`201 Created`):**
+  ```json
+  {
+    "message": "Service scheduled successfully",
+    "scheduleCreated": {
+      "id": 4,
+      "email": "cliente@exemplo.com",
+      "scheduleDateTime": "2026-09-08T14:30:00.000Z"
+    }
+  }
+  ```
 
-1. Para executar os testes, basta executar o comando abaixo na raiz do projeto:
-   ```bash
-   npm run test
-   ```
+#### Deletar Agendamento (`DELETE /schedule/:id`)
+- **Resposta de Sucesso (`200 OK`):**
+  ```json
+  {
+    "message": "Scheduling canceled successfully"
+  }
+  ```
 
-</details>
+## ✨ Funcionalidades
 
-## 🌐 Deploy no Render.com (Swagger Online)
+- **Criação Rápida de Agendamentos**: Registro de clientes garantindo integridade de dados e geração automática de data/hora.
+- **Validação Antecipada (Fail-Fast)**: Middlewares dedicados validam formato de e-mail e identificadores numéricos antes de alcançar as regras de negócio.
+- **Tratamento Centralizado de Erros**: Tratamento assíncrono de exceções com respostas HTTP semânticas e consistentes.
+- **Documentação OpenAPI 3.1 Integrada**: Teste interativo de todos os endpoints via Swagger UI no próprio navegador.
+- **Ambientes Híbridos de Dados**: Suporte completo a **MySQL** (via Docker Compose) para desenvolvimento e testes locais, e **SQLite** para deploy de demonstração em nuvem.
+- **Cobertura de Testes Automatizados**: Testes de integração e unidade cobrindo caminhos felizes e casos de borda com dublês de teste (stubs/mocks).
 
-<details>
-  <summary><strong>Como publicar no Render</strong></summary><br />
+## 🛠️ Tecnologias e Ferramentas Utilizadas
 
-O repositório já inclui o arquivo `render.yaml` pronto para deploy do serviço Web no Render, configurado para usar **SQLite** automaticamente em produção (sem precisar configurar nenhum banco externo para a demonstração do Swagger).
+- **Linguagem & Plataforma**: [Node.js](https://nodejs.org/) com [TypeScript](https://www.typescriptlang.org/)
+- **Framework Web**: [Express.js](https://expressjs.com/)
+- **ORM & Banco de Dados**: [Sequelize](https://sequelize.org/), [MySQL 8.3](https://www.mysql.com/), [SQLite3](https://www.sqlite.org/)
+- **Documentação da API**: [Swagger UI Express](https://github.com/scottie1984/swagger-ui-express) (especificação OpenAPI 3.1)
+- **Testes & Qualidade de Código**: [Mocha](https://mochajs.org/), [Chai](https://www.chaijs.com/), [Sinon.js](https://sinonjs.org/), [NYC (Istanbul)](https://istanbul.js.org/)
+- **Padronização de Código**: [ESLint](https://eslint.org/) (configs Airbnb + SonarJS)
+- **Containerização & DevOps**: [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/), [Render](https://render.com/)
 
-1. Conecte seu repositório no [Render.com](https://render.com/).
-2. Crie um **Web Service** selecionando este repositório (ou use a opção **Blueprint** com o arquivo `render.yaml`):
-   - **Environment / Runtime**: `Node`
-   - **Build Command**: `npm install && npm run build && npm run db:migrate && npm run db:seed`
-   - **Start Command**: `npm start`
-3. Variáveis de ambiente configuradas no `render.yaml`:
-   - `NODE_ENV`: `production`
-   - `DB_DIALECT`: `sqlite`
-4. Após o deploy, a rota principal `/` redireciona automaticamente para o Swagger em `/api-docs`.
-</details>
+## 🏛️ Arquitetura da Solução
 
-## Uso
+O projeto segue a arquitetura em camadas **MSC (Model-Service-Controller)**:
 
-<details>
+```mermaid
+flowchart LR
+    Client([Cliente / Swagger UI]) -->|HTTP Request| Router[Express Router]
+    Router -->|Validação| Middleware[Middlewares de Validação]
+    Middleware -->|Requisição Válida| Controller[ScheduleController]
+    Controller -->|Dados| Service[ScheduleService]
+    Service -->|Operações| Model[ScheduleModel / Sequelize]
+    Model -->|Query SQL| DB[(MySQL / SQLite)]
+    Service -.->|Erros Assíncronos| ErrorHandler[Error Middleware]
+```
 
-  <summary><strong>Schedule</strong></summary>
+- **Router**: Mapeia as URLs e vincula os middlewares e métodos dos controllers.
+- **Middlewares**: Validação estrita dos inputs (`emailFields`, `idFields`) isolando falhas de payload antes da execução de negócio.
+- **Controller**: Trata apenas aspectos do protocolo HTTP (leitura de parâmetros, headers e serialização de respostas).
+- **Service**: Concentra as regras de negócio da aplicação e orquestração de dados.
+- **Model**: Mapeamento objeto-relacional dos esquemas de dados com Sequelize.
 
-### Endpoints
+## 📁 Estrutura do Repositório
 
-### 1. `POST /schedule`
+```text
+desafio-nodejs/
+├── config/                  # Configurações de banco de dados (MySQL / SQLite)
+│   └── database.ts
+├── public/                  # Assets estáticos e imagens para documentação
+│   └── images/
+│       └── swagger.gif
+├── src/
+│   ├── controllers/         # Camada de controle de requisições e respostas HTTP
+│   │   └── ScheduleController.ts
+│   ├── database/            # Migrações e seeds do Sequelize
+│   │   ├── migrations/
+│   │   └── seeders/
+│   ├── interfaces/          # Definições de contratos e tipos TypeScript
+│   ├── middlewares/         # Middlewares de validação de inputs (e-mail, ID)
+│   │   ├── ValidateId.ts
+│   │   └── ValidateInputEmail.ts
+│   ├── models/              # Modelos Sequelize mapeando as entidades
+│   │   ├── ScheduleModel.ts
+│   │   └── index.ts
+│   ├── routes/              # Definições de rotas da aplicação
+│   │   └── scheduleRouter.ts
+│   ├── services/            # Camada de regras de negócio
+│   │   └── ScheduleService.ts
+│   ├── tests/               # Testes automatizados com Mocha, Chai e Sinon
+│   │   ├── mocks/
+│   │   └── ScheduleTest.ts
+│   ├── utils/               # Handlers de erro customizados e helpers
+│   ├── app.ts               # Setup central da aplicação Express
+│   └── server.ts            # Ponto de entrada do servidor
+├── .env.example             # Modelo de variáveis de ambiente
+├── docker-compose.yml       # Orquestração do MySQL local via Docker
+├── render.yaml              # Blueprint de deploy automatizado no Render
+├── swagger.json             # Especificação OpenAPI 3.1
+├── tsconfig.json            # Configurações do compilador TypeScript
+└── package.json             # Dependências e scripts do projeto
+```
 
-<details>
-  <summary>Agenda um serviço de beleza, fornecendo apenas o e-mail de contato.</summary><br />
+## 💡 Decisões Técnicas
 
-Funciona da seguinte forma:
+1. **Separação em Camada Service**:
+   - Foi adotada uma camada de serviço explícita para evitar colocar regras de negócio dentro de controllers, facilitando a manutenibilidade e a criação de testes unitários isolados com mocks.
+2. **Validações Antecipadas por Middlewares**:
+   - Inputs como e-mail e formato do ID são tratados por middlewares antes de chegarem ao controller ou service, garantindo que as camadas inferiores recebam apenas dados consistentes.
+3. **Resiliência de Ambientes (MySQL + SQLite)**:
+   - Para o desenvolvimento local focado em produção, o projeto usa **MySQL** via Docker Compose. Para permitir uma demonstração online gratuita e confiável no Render sem necessidade de bancos externos caros, o Sequelize adapta-se de forma inteligente ao **SQLite** em produção.
+4. **Substituição de Deletar por Auditoria (Visão de Produto)**:
+   - Embora o requisito básico pedisse deleção física (`DELETE`), em um sistema real de salão de beleza a boa prática seria um *soft delete* (`paranoid: true`) para manter o histórico de agendamentos para fins contábeis e de fidelização.
 
-- `/schedule` (`POST`)
-   - deve receber via corpo do POST um e-mail. 
-     - Exemplo de requisição:
-        ```json
-        {
-          "email": "maria_456@hotmail.com"
-        }
-        ```
-   - em caso de sucesso:
-      - retorna o status HTTP 201 (CREATED)
-      - retorna uma mensagem e os dados do agendamento criado. 
-        - Exemplo de resposta:
+## 🚀 Como Executar o Projeto
 
-        ```json
-        {
-          "message": {
-            "message": "Service scheduled successfully"
-          },
-          "newSchedule": {
-            "scheduleDateTime": "2024-04-05T21:01:22.116Z",
-            "id": 4,
-            "email": "maria_456@hotmail.com"
-          }
-        }
-        ```
-    - caso não seja informado nenhum `email`, a rota retorna o status HTTP 400 com a
-     mensagem `Email is required` no corpo da resposta.
-    - caso seja informado apenas espaços vazios, a rota retorna o status HTTP 400 com a
-     mensagem `Email cannot be an empty string` no corpo da resposta.
-    - caso seja informado um `email` invalido, a rota retorna o status HTTP 400 com a
-     mensagem `Invalid email format` no corpo da resposta.
+### Pré-requisitos
+- [Node.js](https://nodejs.org/) (v20 ou superior)
+- [Docker](https://www.docker.com/) e [Docker Compose](https://docs.docker.com/compose/) (opcional, para rodar MySQL local)
+- [Git](https://git-scm.com/)
 
-</details>
+### 1. Clonar o Repositório
+```bash
+git clone https://github.com/ludson96/desafio-nodejs.git
+cd desafio-nodejs
+```
 
+### 2. Instalar Dependências
+```bash
+npm install
+```
 
-### 2. `GET /schedule`
+### 3. Configurar Variáveis de Ambiente
+Copie o arquivo de exemplo e ajuste as variáveis se necessário:
+```bash
+cp .env.example .env
+```
 
-<details>
-  <summary>Lista todos os agendamentos.</summary><br />
+### 4. Inicializar o Banco de Dados com Docker
+Caso vá utilizar o MySQL localmente, inicie o container:
+```bash
+docker compose up -d
+```
 
-Funciona da seguinte forma:
+### 5. Executar a Aplicação em Desenvolvimento
+O comando abaixo compila o TypeScript, roda as migrações/seeds e inicia o servidor com recarregamento automático (`nodemon`):
+```bash
+npm run dev
+```
+A API estará acessível em `http://localhost:3001` (ou na porta informada no seu `.env`).
+Acesse o Swagger em: `http://localhost:3001/api-docs`
 
-- `/schedule` (`GET`)
-   - retorna um array de todos os agendamentos. 
-     - Exemplo de resposta:
+### 6. Executar os Testes Automatizados
+```bash
+# Rodar todos os testes
+npm test
 
-        ```json
-        [
-          {
-            "id": 1,
-            "email": "exemple_123@hotmail.com",
-            "scheduleDateTime": "2024-04-20T10:30:00.000Z"
-          },
-          {
-            "id": 2,
-            "email": "pedro-789@gmail.com",
-            "scheduleDateTime": "2024-04-30T09:00:00.000Z"
-          },
-          {
-            "id": 3,
-            "email": "maria_456@hotmail.com",
-            "scheduleDateTime": "2024-04-05T21:01:22.000Z"
-          }
-        ]
-        ```
+# Rodar os testes gerando relatório de cobertura de código
+npm run test:coverage
+```
 
-</details>
+### 7. Verificação de Lint
+```bash
+npm run lint
+```
 
-### 3. `GET /schedule/{id}`
+## 📄 Licença
 
-<details>
-  <summary>Cancela um agendamento pelo ID.</summary><br />
+Este projeto está sob a licença [Apache 2.0](LICENSE). Consulte o arquivo para mais informações.
 
-Funciona da seguinte forma:
-
-- `/schedule/{id}` (`GET`):
-   - recebe um `id` pelo caminho da rota e retorna uma mensagem de sucesso. 
-     - Exemplo de resposta para a rota `/schedule/3` (supondo que exista um agendamento com `id = 3`):
-
-        ```json
-        {
-          "message": "Scheduling canceled successfully"
-        }
-        ```
-   - caso não exista um agendamento com esse `id`, a rota retorna o status HTTP 404 com a
-     mensagem `Schedule not found with ID: 3` no corpo da resposta.
-    - caso seja informado um `id` que não é um número, a rota retorna o status HTTP 400 com a
-     mensagem `ID must be a number` no corpo da resposta.
-
-</details>
-
-</details>
-
-[Git-logo]: https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white
-[Git-url]: https://git-scm.com
-
-[NodeJS-logo]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
-[NodeJS-url]: https://nodejs.org/en/
-[TypeScript-logo]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
-[TypeScript-url]: https://www.typescriptlang.org/
-[Docker-logo]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
-[Docker-url]: https://www.docker.com
-[Mocha-logo]: https://img.shields.io/badge/Mocha-8D6748?style=for-the-badge&logo=Mocha&logoColor=white
-[Mocha-url]: https://mochajs.org/
-[Chai-logo]: https://img.shields.io/badge/Chai-A30701?style=for-the-badge&logo=chai&logoColor=white
-[Chai-url]: https://www.chaijs.com/
-[MySQL-logo]: https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white
-[MySQL-url]: https://www.mysql.com
-[Sequelize-logo]: https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white
-[Sequelize-url]: https://sequelize.org
-[Express-logo]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
-[Express-url]: https://expressjs.com
-[Nodemon-logo]: https://img.shields.io/badge/Nodemon-76D04B?logo=nodemon&logoColor=fff&style=for-the-badge
-[Nodemon-url]: https://www.npmjs.com/package/nodemon
-[ESLint-logo]: https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white
-[ESLint-url]: https://eslint.org/
-[ts-node-logo]: https://img.shields.io/badge/ts--node-3178C6?logo=tsnode&logoColor=fff&style=for-the-badge
-[ts-node-url]: https://www.npmjs.com/package/ts-node-dev
-[.ENV-logo]: https://img.shields.io/badge/.ENV-ECD53F?logo=dotenv&logoColor=000&style=for-the-badge
-[.ENV-url]: https://www.npmjs.com/package/dotenv
-[Swagger-GIF]: public/images/swagger.gif
+<div align="center">
+  Desenvolvido por <strong>Ludson Pereira dos Santos</strong> 🚀<br />
+  <a href="https://www.linkedin.com/in/ludson96/">LinkedIn</a> • <a href="https://github.com/ludson96">GitHub</a> • <a href="mailto:ludson_ps27@hotmail.com">E-mail</a>
+</div>
