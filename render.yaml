@@ -3,7 +3,7 @@ services:
     name: desafio-nodejs-api
     runtime: node
     plan: free
-    buildCommand: npm install && npm run build && npm run db:migrate && npm run db:seed
+    buildCommand: npm install --include=dev && npm run build && npm run db:migrate && npm run db:seed
     startCommand: npm start
     envVars:
       - key: NODE_ENV
