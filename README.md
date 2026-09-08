@@ -81,20 +81,16 @@ Uma API RESTful em Node.js utilizando TypeScript para um sistema de agendamento 
 <details>
   <summary><strong>Como publicar no Render</strong></summary><br />
 
-O repositório já inclui o arquivo `render.yaml` pronto para deploy do serviço Web no Render.
+O repositório já inclui o arquivo `render.yaml` pronto para deploy do serviço Web no Render, configurado para usar **SQLite** automaticamente em produção (sem precisar configurar nenhum banco externo para a demonstração do Swagger).
 
 1. Conecte seu repositório no [Render.com](https://render.com/).
-2. Crie um **Web Service** selecionando este repositório:
+2. Crie um **Web Service** selecionando este repositório (ou use a opção **Blueprint** com o arquivo `render.yaml`):
    - **Environment / Runtime**: `Node`
-   - **Build Command**: `npm install && npm run build`
+   - **Build Command**: `npm install && npm run build && npm run db:migrate && npm run db:seed`
    - **Start Command**: `npm start`
-3. Configure as variáveis de ambiente necessárias para o MySQL (caso use um banco MySQL em nuvem, como TiDB Cloud, Aiven, Clever Cloud ou Railway):
-   - `MYSQL_HOST`
-   - `MYSQL_PORT` (ex: `3306`)
-   - `MYSQL_USER`
-   - `MYSQL_PASSWORD`
-   - `MYSQL_DB_NAME`
+3. Variáveis de ambiente configuradas no `render.yaml`:
    - `NODE_ENV`: `production`
+   - `DB_DIALECT`: `sqlite`
 4. Após o deploy, a rota principal `/` redireciona automaticamente para o Swagger em `/api-docs`.
 </details>
 

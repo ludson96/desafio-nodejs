@@ -3,18 +3,10 @@ services:
     name: desafio-nodejs-api
     runtime: node
     plan: free
-    buildCommand: npm install && npm run build
+    buildCommand: npm install && npm run build && npm run db:migrate && npm run db:seed
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
-      - key: MYSQL_HOST
-        sync: false
-      - key: MYSQL_PORT
-        value: 3306
-      - key: MYSQL_USER
-        sync: false
-      - key: MYSQL_PASSWORD
-        sync: false
-      - key: MYSQL_DB_NAME
-        sync: false
+      - key: DB_DIALECT
+        value: sqlite
