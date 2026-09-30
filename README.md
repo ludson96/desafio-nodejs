@@ -8,7 +8,6 @@
 [![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 [![Swagger](https://img.shields.io/badge/Swagger-OpenAPI_3.1-85EA2D.svg?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/)
 [![Mocha & Chai](https://img.shields.io/badge/Tests-Mocha_%26_Chai-8D6748.svg?style=for-the-badge&logo=mocha&logoColor=white)](https://mochajs.org/)
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
 
 > 🇧🇷 **Português** | 🇺🇸 [**English Version**](README.en.md)
 
@@ -26,7 +25,6 @@ API RESTful robusta desenvolvida em Node.js com TypeScript e arquitetura em cama
 - [📁 Estrutura do Repositório](#-estrutura-do-repositório)
 - [💡 Decisões Técnicas](#-decisões-técnicas)
 - [🚀 Como Executar o Projeto](#-como-executar-o-projeto)
-- [📄 Licença](#-licença)
 
 ## 📝 Sobre o Projeto
 
@@ -231,10 +229,6 @@ npm run test:coverage
 ```bash
 npm run lint
 ```
-
-## 📄 Licença
-
-Este projeto está sob a licença [Apache 2.0](LICENSE). Consulte o arquivo para mais informações.
 
 <div align="center">
   Desenvolvido por <strong>Ludson Pereira dos Santos</strong> 🚀<br />
